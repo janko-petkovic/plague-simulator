@@ -1,0 +1,2 @@
+# Plague
+Modern plague simulator

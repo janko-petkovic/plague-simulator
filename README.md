@@ -1,2 +1,3 @@
 # Plague
-Modern plague simulator
+Modern plague simulator.
+Sort of.

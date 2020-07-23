@@ -38,7 +38,7 @@ std::vector<float> CumDistrFunc(I dOI, I peakDay, F scale, std::string type) {
 	
 	std::vector<float> PAYLOAD(dOI);
 	
-        // switch depenting on what type the distribution is
+        // switch depending on what type the distribution is
 	switch(Map[type]) {
                 case 1: {
                         float sigma = static_cast<float>(MinDist(dOI, peakDay))/3;

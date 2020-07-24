@@ -37,8 +37,7 @@ arma::mat CastRowMat(std::vector<float> vec) {
 	for (int i=0; i<size; i++) PAYLOAD(0,i) = vec[i];
 	return PAYLOAD;
 }
-	
-	
+
 
 
 // Computes the discrete cumulative distribution function of a given plague parameter (death prob, healed prob,..)
@@ -68,3 +67,8 @@ std::vector<float> CumDistrFunc(I dOI, I peakDay, F scale, std::string type) {
 	
 	return PAYLOAD;
 }
+
+
+
+
+	

@@ -2,6 +2,7 @@
  *
  * int MinDist(int, int)
  * float CumGauss(F)
+ * mat CastRowMat(vector<float>)
  * vector<float> CumDistrFunc(I, I, F, string)
  */
 
@@ -9,6 +10,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <armadillo>
 
 
 
@@ -26,6 +28,17 @@ float CumGauss(F x) {
     PAYLOAD = 0.5*(erf(10) + erf(x));
     return PAYLOAD;
 }
+
+
+// Auxiliary function: casts vectors into square matrixes for further use
+arma::mat CastRowMat(std::vector<float> vec) {
+	int size = vec.size();
+	arma::mat PAYLOAD(size, size, arma::fill::zeros);
+	for (int i=0; i<size; i++) PAYLOAD(0,i) = vec[i];
+	return PAYLOAD;
+}
+	
+	
 
 
 // Computes the discrete cumulative distribution function of a given plague parameter (death prob, healed prob,..)
@@ -55,6 +68,3 @@ std::vector<float> CumDistrFunc(I dOI, I peakDay, F scale, std::string type) {
 	
 	return PAYLOAD;
 }
-		
-			
-	

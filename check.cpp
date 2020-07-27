@@ -1,26 +1,18 @@
-#include "Plague.h"
-#include "Plague.cpp"
 #include <iostream>
 #include <armadillo>
+#include "Plague.h"
+#include "Plague.cpp"
+
 
 using namespace std;
+using namespace arma;
 
 int main() {
-		statusChange recovery;
-		recovery.peak = 9;
-		recovery.totProb = 1;
-		recovery.distrType = "Uniform";
+	
 		
-		statusChange death;
-		death.peak = 6;
-		death.totProb = 0.8;
-		death.distrType = "Gaussian";
+	arma::dcolvec a{1,2,3,4};
+	arma::mat mat(4,4,fill::eye);
+	
 		
-		
-		PlagueModel myPlague(10, death, recovery, 0.3);
-		
-		for (int i=0; i<10; i++) printf("Distribuzione guariti giorno %i: %.2f\n",
-		i, myPlague.RecovCumDistr()[i]);
-		
-        return 0;
+     return 0;
 }

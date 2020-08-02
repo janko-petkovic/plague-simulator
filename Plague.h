@@ -4,25 +4,31 @@
 #include <armadillo>
 #include <string>
 
+using std::vector;
+
 
 struct statusChange {
 	int peak;
-	float totProb;
+	float cumProb;
 	std::string distrType; // Gaussian or Uniform e.g.
 };
 
 
 class PlagueModel {
 private:
+	int _dOI;
 	float _r0;
-	std::vector<float> _deathCumDistr;
-	std::vector<float> _recovCumDistr;
+	vector<float> _deathCumDistr;
+	vector<float> _recovCumDistr;
 	
-	public:
+public:
 	PlagueModel(int, statusChange, statusChange, float);
 	
-	long int Flow(int t) const;
-	std::vector<float> RecovCumDistr() const;
+	vector<float> RecovCumDistr() const;
+	vector<float> DeathCumDistr() const;
+
+	vector<vector<double>> Flow(uint,uint) const;
+	vector<vector<long int>> Simulate(int) const;
 };
 
 #endif	

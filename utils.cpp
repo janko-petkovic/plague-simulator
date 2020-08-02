@@ -2,7 +2,8 @@
  *
  * int MinDist(int, int)
  * float CumGauss(F)
- * mat CastRowMat(vector<float>)
+ * fmat CastRowMat(vector<float>)
+ * fmat BuildDistrMatCheat(vector<float>)
  * vector<float> CumDistrFunc(I, I, F, string)
  */
 
@@ -31,15 +32,30 @@ float CumGauss(F x) {
 
 
 // Auxiliary function: casts vectors into square matrixes for further use
-arma::mat CastRowMat(std::vector<float> vec) {
-	int size = vec.size();
-	arma::mat PAYLOAD(size, size, arma::fill::zeros);
-	for (int i=0; i<size; i++) PAYLOAD(0,i) = vec[i];
+// Btw it converts vectors tu arma::mats
+arma::fmat CastRowMat(std::vector<float> &vec) {
+	arma::frowvec temp(vec);
+	arma::fmat PAYLOAD(temp);
+	PAYLOAD.resize(temp.n_elem, temp.n_elem);
 	return PAYLOAD;
 }
-	
-	
 
+
+// Very chaty stuff to calculate the discrete prob distribution of the 
+// status changes. Lets leave it like that
+// NB there is a very sneaky cast from fmat to dmat care!!
+arma::dmat BuildDistribMatCheat(std::vector<float> vec) {
+
+	for (int i= vec.size()-1; i != 0; i--) vec[i] -= vec[i-1];
+	
+	vec.insert(vec.begin(),0);
+	arma::fmat temp(CastRowMat(vec));
+	arma::dmat PAYLOAD = arma::conv_to<arma::dmat>::from(temp);
+	
+	return PAYLOAD;
+}
+
+	
 
 // Computes the discrete cumulative distribution function of a given plague parameter (death prob, healed prob,..)
 template <class I, class F>
@@ -68,3 +84,8 @@ std::vector<float> CumDistrFunc(I dOI, I peakDay, F scale, std::string type) {
 	
 	return PAYLOAD;
 }
+
+
+
+
+	

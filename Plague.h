@@ -17,7 +17,7 @@ struct statusChange {
 class PlagueModel {
 private:
 	int _dOI;
-	float _r0;
+	float _beta;
 	vector<float> _deathCumDistr;
 	vector<float> _recovCumDistr;
 	

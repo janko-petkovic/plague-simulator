@@ -7,9 +7,9 @@ using namespace std;
 int main() {
 
 		statusChange recovery;
-		recovery.peak = 1;
+		recovery.peak = 15;
 		recovery.cumProb = 1;
-		recovery.distrType = "Uniform";
+		recovery.distrType = "Gaussian";
 		
 		statusChange death;
 		death.peak = 3;
@@ -17,12 +17,12 @@ int main() {
 		death.distrType = "Gaussian";
 		
 		
-		PlagueModel myPlague(2, death, recovery, 0.5);
+		PlagueModel myPlague(30, death, recovery, 0.3);
 		
 		
-		vector<vector<double>> pandemy = myPlague.Flow(10,100);
+		vector<vector<double>> pandemy = myPlague.Flow(150,100);
 		cout << endl;
-		for (int i=0; i<5; i++) 
+		for (int i=0; i<150; i++) 
 		//~ printf("%.2f ",myPlague.RecovCumDistr()[i]);
 		printf("%.2f \t %.2f \t %.2f \t %.2f \n",
 		pandemy[0][i],pandemy[1][i],pandemy[2][i],pandemy[3][i]);

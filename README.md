@@ -5,7 +5,7 @@ Sort of.
 So basically for now we have:
 
 Headers:
-- Plague.h : infection model class. The class should contain the two core methods Flow and Simulate that should compute the ideal, continuous probability developement the disease and the actual Monte Carlo simulation.
+- Plague.h : infection model class. The class should contain the two core methods Flow and Simulate that should compute the deterministic and the stochatic predictions about the disease spread
 - bufferpushbutton.h
 - qsliderfromzero.h
 - scaledvaluelabel.h

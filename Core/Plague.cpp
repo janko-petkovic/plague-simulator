@@ -4,20 +4,24 @@
 
 using std::vector;
 
+
+// constructor: crea le due distribuzioni di guarigione e decesso
 PlagueModel::PlagueModel(int dOI, statusChange death, statusChange recov,
-						float r0) : _dOI(dOI), _beta(r0) {
+						double beta) : _dOI(dOI), _beta(beta) {
 	_deathCumDistr = CumDistrFunc(dOI, death.peak, death.finalProb,
 									death.distrType);
 	_recovCumDistr = CumDistrFunc(dOI, recov.peak, recov.finalProb,
 									recov.distrType);
 }		
 
-vector<float> PlagueModel::RecovCumDistr() const { return _recovCumDistr; }
-vector<float> PlagueModel::DeathCumDistr() const { return _deathCumDistr; }
+// getter per le distribuzioni (usate solo in debugging per ora)
+vector<double> PlagueModel::RecovCumDistr() const { return _recovCumDistr; }
+vector<double> PlagueModel::DeathCumDistr() const { return _deathCumDistr; }
 
 
 
-vector<vector<double>> PlagueModel::Flow(uint endTime, uint N0) const {
+// previsione deterministica
+vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
 	//vettore della popolazione infetta al tempo t
 	arma::dcolvec Nvec(_dOI+1);
 	Nvec(0) = N0;
@@ -52,7 +56,7 @@ vector<vector<double>> PlagueModel::Flow(uint endTime, uint N0) const {
 	arma::dcolvec infectIncr(_dOI+1);
 	
 
-	for (uint i=1; i<=endTime; i++) {
+	for (int i=1; i<=endTime; i++) {
 		
 		cumInfected[i] = cumInfected[i-1] + Nvec(0)*_beta;
 		
@@ -73,5 +77,12 @@ vector<vector<double>> PlagueModel::Flow(uint endTime, uint N0) const {
 	PAYLOAD[2] = dead;
 	PAYLOAD[3] = recovered;
 	
+	return PAYLOAD;
+}
+
+
+//previsione stocastica qua
+vector<vector<long int>> PlagueModel::StocPredict(int endTime, int N0) const {
+	vector<vector<long int>> PAYLOAD(4);
 	return PAYLOAD;
 }

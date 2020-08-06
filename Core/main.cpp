@@ -20,7 +20,7 @@ int main() {
 		PlagueModel myPlague(30, death, recovery, 0.3);
 		
 		
-		vector<vector<double>> pandemy = myPlague.Flow(150,100);
+		vector<vector<double>> pandemy = myPlague.DetPredict(150,100);
 		cout << endl;
 		for (int i=0; i<150; i++) 
 		//~ printf("%.2f ",myPlague.RecovCumDistr()[i]);

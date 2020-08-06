@@ -7,28 +7,30 @@
 using std::vector;
 
 
+
+// remember: Gaussian = 1, Uniform = 2
 struct statusChange {
 	int peak;
-	float finalProb;
-	std::string distrType; // Gaussian or Uniform e.g.
+	double finalProb;
+	std::string distrType;
 };
 
 
 class PlagueModel {
 private:
 	int _dOI;
-	float _beta;
-	vector<float> _deathCumDistr;
-	vector<float> _recovCumDistr;
+	double _beta;
+	vector<double> _deathCumDistr;
+	vector<double> _recovCumDistr;
 	
 public:
-	PlagueModel(int, statusChange, statusChange, float);
+	PlagueModel(int, statusChange, statusChange, double);
 	
-	vector<float> RecovCumDistr() const;
-	vector<float> DeathCumDistr() const;
+	vector<double> RecovCumDistr() const;
+	vector<double> DeathCumDistr() const;
 
-	vector<vector<double>> Flow(uint,uint) const;
-	vector<vector<long int>> Simulate(int) const;
+	vector<vector<double>> DetPredict(int,int) const;
+	vector<vector<long int>> StocPredict(int,int) const;
 };
 
 #endif	

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
-    <height>597</height>
+    <width>567</width>
+    <height>814</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,12 +57,12 @@
        </widget>
       </item>
       <item>
-       <spacer name="verticalSpacer_3">
+       <spacer name="verticalSpacer_6">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
         <property name="sizeType">
-         <enum>QSizePolicy::Preferred</enum>
+         <enum>QSizePolicy::Fixed</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -81,14 +81,14 @@
          <number>12</number>
         </property>
         <item row="0" column="0">
-         <widget class="QLabel" name="lab_DOI">
+         <widget class="QLabel" name="lab_dOI">
           <property name="text">
            <string>Durata massima di malattia (giorni)</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QSpinBox" name="in_DOI">
+         <widget class="QSpinBox" name="in_dOI">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -105,11 +105,11 @@
            <number>2</number>
           </property>
           <property name="maximum">
-           <number>100000</number>
+           <number>9999</number>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -117,12 +117,12 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>20</height>
+            <height>10</height>
            </size>
           </property>
          </spacer>
         </item>
-        <item row="2" column="0">
+        <item row="3" column="0">
          <widget class="QLabel" name="lab_title_recov">
           <property name="font">
            <font>
@@ -135,14 +135,14 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="0">
          <widget class="QLabel" name="lab_recovDistr">
           <property name="text">
            <string>Distribuzione  del processo</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="4" column="1">
          <layout class="QHBoxLayout" name="hor_recovDistr">
           <item>
            <widget class="QComboBox" name="combo_recovDistr">
@@ -188,14 +188,14 @@
           </item>
          </layout>
         </item>
-        <item row="4" column="0">
+        <item row="5" column="0">
          <widget class="QLabel" name="lab_recovPeak">
           <property name="text">
            <string>Picco della distribuzione (giorno)</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="5" column="1">
          <layout class="QHBoxLayout" name="hor_recovPeak">
           <item>
            <widget class="QLabel" name="lab_min_recovPeak">
@@ -314,14 +314,14 @@
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
+        <item row="6" column="0">
          <widget class="QLabel" name="lab_recovFinal">
           <property name="text">
            <string>Probabilita finale di guarigione G</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="6" column="1">
          <layout class="QHBoxLayout" name="hor_recovScale">
           <item>
            <widget class="QLabel" name="lab_min_recovFinal">
@@ -434,7 +434,7 @@
           </item>
          </layout>
         </item>
-        <item row="6" column="0">
+        <item row="7" column="0">
          <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -442,12 +442,12 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>20</height>
+            <height>10</height>
            </size>
           </property>
          </spacer>
         </item>
-        <item row="7" column="0">
+        <item row="8" column="0">
          <widget class="QLabel" name="lab_title_death">
           <property name="font">
            <font>
@@ -460,14 +460,14 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="0">
+        <item row="9" column="0">
          <widget class="QLabel" name="lab_deathDistr">
           <property name="text">
            <string>Distribuzione del processo</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="9" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QComboBox" name="combo_deathDistr">
@@ -498,14 +498,14 @@
           </item>
          </layout>
         </item>
-        <item row="9" column="0">
+        <item row="10" column="0">
          <widget class="QLabel" name="lab_deathPeak">
           <property name="text">
            <string>Picco della distribuzione (giorno)</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="1">
+        <item row="10" column="1">
          <layout class="QHBoxLayout" name="hor_deathPeak">
           <item>
            <widget class="QLabel" name="la_min_deathPeak">
@@ -609,52 +609,169 @@
           </item>
          </layout>
         </item>
-        <item row="10" column="0">
+        <item row="11" column="0">
          <widget class="QLabel" name="lab_deathFinal">
           <property name="text">
            <string>Probabilita' finale di decesso</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="1">
+        <item row="11" column="1">
          <widget class="QLabel" name="label_3">
           <property name="text">
            <string>1 - G</string>
           </property>
          </widget>
         </item>
+        <item row="12" column="0">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>100</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="13" column="0">
+         <widget class="QLabel" name="lab_title_prediction">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>SIMULAZIONE</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0">
+         <widget class="QLabel" name="lab_N0">
+          <property name="text">
+           <string>Numero iniziale di contagiati</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="1">
+         <widget class="QSpinBox" name="in_N0">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum">
+           <number>9999</number>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0">
+         <widget class="QLabel" name="lab_predictionDays">
+          <property name="text">
+           <string>Durata della previsione (giorni)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="1">
+         <widget class="QSpinBox" name="in_predictionDays">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum">
+           <number>9999</number>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0">
+         <widget class="QLabel" name="lab_predictionType">
+          <property name="text">
+           <string>Tipo di previsione</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="1">
+         <widget class="QComboBox" name="in_predictionType">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <item>
+           <property name="text">
+            <string>Deterministica</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Stocastica</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lab_beta">
+          <property name="text">
+           <string>Tasso di contagio giornaliero Beta</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="in_beta">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
-       <spacer name="verticalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
+       <widget class="QPushButton" name="but_simulate">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="sizeHint" stdset="0">
+        <property name="minimumSize">
          <size>
-          <width>20</width>
+          <width>0</width>
           <height>40</height>
          </size>
         </property>
-       </spacer>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="BufferPushButton" name="but_detPrev">
-          <property name="text">
-           <string>Previsione media</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>Simulazione stocastica (ancora vuoto)</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RUN</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -665,7 +782,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>660</width>
+     <width>567</width>
      <height>22</height>
     </rect>
    </property>
@@ -689,65 +806,38 @@
     <slot>setScaledValue0001(int)</slot>
    </slots>
   </customwidget>
-  <customwidget>
-   <class>BufferPushButton</class>
-   <extends>QPushButton</extends>
-   <header>bufferpushbutton.h</header>
-   <slots>
-    <slot>hear_recovDistr(Qstring)</slot>
-    <slot>hear_recovPeak(int)</slot>
-    <slot>hear_recovFinalProb(int)</slot>
-    <slot>hear_dOI(int)</slot>
-   </slots>
-  </customwidget>
  </customwidgets>
  <resources/>
  <connections>
   <connection>
-   <sender>in_DOI</sender>
-   <signal>valueChanged(QString)</signal>
-   <receiver>lab_max_recovPeak</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>365</x>
-     <y>173</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>570</x>
-     <y>298</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>in_DOI</sender>
-   <signal>valueChanged(QString)</signal>
-   <receiver>lab_max_deathPeak</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>365</x>
-     <y>173</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>570</x>
-     <y>458</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>slid_deathPeak</sender>
+   <sender>in_dOI</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>label</receiver>
+   <receiver>lab_max_recovPeak</receiver>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>498</x>
-     <y>455</y>
+     <x>343</x>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
-     <x>653</x>
-     <y>455</y>
+     <x>435</x>
+     <y>338</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_dOI</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>slid_recovPeak</receiver>
+   <slot>setMaximum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>329</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>
@@ -758,44 +848,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>498</x>
-     <y>295</y>
+     <x>392</x>
+     <y>335</y>
     </hint>
     <hint type="destinationlabel">
-     <x>636</x>
-     <y>295</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>in_DOI</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>slid_recovPeak</receiver>
-   <slot>setMaximum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>365</x>
-     <y>173</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>498</x>
-     <y>295</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>in_DOI</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>slid_deathPeak</receiver>
-   <slot>setMaximum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>365</x>
-     <y>173</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>498</x>
-     <y>455</y>
+     <x>507</x>
+     <y>333</y>
     </hint>
    </hints>
   </connection>
@@ -806,62 +864,235 @@
    <slot>setScaledValue0001(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>498</x>
-     <y>329</y>
+     <x>397</x>
+     <y>363</y>
     </hint>
     <hint type="destinationlabel">
-     <x>653</x>
-     <y>329</y>
+     <x>520</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_dOI</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lab_max_deathPeak</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>321</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>444</x>
+     <y>473</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slid_deathPeak</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>388</x>
+     <y>475</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>512</x>
+     <y>474</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_dOI</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_dOI(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>169</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>265</x>
+     <y>121</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_beta</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>Window</receiver>
+   <slot>set_beta(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>335</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>211</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>combo_recovDistr</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_recovDistr(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>301</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>256</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>slid_recovPeak</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>but_detPrev</receiver>
-   <slot>hear_recovPeak(int)</slot>
+   <receiver>Window</receiver>
+   <slot>set_recovPeak(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>367</x>
-     <y>292</y>
+     <x>379</x>
+     <y>332</y>
     </hint>
     <hint type="destinationlabel">
-     <x>239</x>
-     <y>544</y>
+     <x>399</x>
+     <y>288</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>in_recovFinal</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>but_detPrev</receiver>
-   <slot>hear_recovFinalProb(int)</slot>
+   <receiver>Window</receiver>
+   <slot>set_recovFinalProb(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>346</x>
-     <y>327</y>
+     <x>387</x>
+     <y>366</y>
     </hint>
     <hint type="destinationlabel">
-     <x>251</x>
-     <y>544</y>
+     <x>481</x>
+     <y>388</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>in_DOI</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>but_detPrev</receiver>
-   <slot>hear_dOI(int)</slot>
+   <sender>combo_deathDistr</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_deathDistr(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>312</x>
-     <y>162</y>
+     <x>350</x>
+     <y>444</y>
     </hint>
     <hint type="destinationlabel">
-     <x>217</x>
-     <y>533</y>
+     <x>250</x>
+     <y>410</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slid_deathPeak</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_deathPeak(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>476</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>414</x>
+     <y>430</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_N0</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_N0(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>613</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>306</x>
+     <y>557</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_predictionDays</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_predictionDays(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>332</x>
+     <y>642</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>637</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_predictionType</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>Window</receiver>
+   <slot>set_predictionType(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>689</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>678</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>but_simulate</sender>
+   <signal>clicked()</signal>
+   <receiver>Window</receiver>
+   <slot>simulate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>735</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>383</x>
+     <y>764</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>simulate()</slot>
+  <slot>set_dOI(int)</slot>
+  <slot>set_beta(double)</slot>
+  <slot>set_recovDistr(int)</slot>
+  <slot>set_recovPeak(int)</slot>
+  <slot>set_recovFinalProb(int)</slot>
+  <slot>set_deathDistr(int)</slot>
+  <slot>set_deathPeak(int)</slot>
+  <slot>set_N0(int)</slot>
+  <slot>set_predictionDays(int)</slot>
+  <slot>set_predictionType(int)</slot>
+ </slots>
 </ui>

@@ -17,20 +17,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dialog.cpp \
     main.cpp \
     qsliderfromzero.cpp \
     scaledvaluelabel.cpp \
     window.cpp
 
 HEADERS += \
+    dialog.h \
     qsliderfromzero.h \
     scaledvaluelabel.h \
     window.h
 
 FORMS += \
+    dialog.ui \
     window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../usr/lib/release/ -larmadillo
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../usr/lib/debug/ -larmadillo
+else:unix: LIBS += -L$$PWD/../../../../../usr/lib/ -larmadillo
+
+# AN IMPORTANT NOTE: COMPILATION FAILS IF THESE LINES ARE INSERTED
+#INCLUDEPATH += $$PWD/../../../../../usr/include
+#DEPENDPATH += $$PWD/../../../../../usr/include

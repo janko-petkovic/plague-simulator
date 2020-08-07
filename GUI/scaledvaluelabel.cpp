@@ -8,3 +8,9 @@ void ScaledValueLabel::setScaledValue0001(int value) {
     QString string = QString::number(temp);
     this -> setText(string);
 }
+
+void ScaledValueLabel::setValueMinus1(int val) {
+    int temp = val - 1;
+    QString string = QString::number(temp);
+    this -> setText(string);
+}

@@ -1,28 +1,35 @@
 #include "window.h"
 #include "ui_window.h"
 #include "window.h"
+#include "dialog.h"
 #include "../Core/Plague.h"
-//#include "../Core/Plague.cpp"
+#include "../Core/Plague.cpp"
+
 #include <string>
 #include <QtWidgets>
 #include <QtCharts>
+#include <cassert>
+#include <iostream>
+
 
 Window::Window(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Window)
 {
     ui->setupUi(this);
+
+
     _dOI = 2;
-    _beta = 0;
-    _death.peak = 0;
-    _death.distrType.assign("Gaussian");
+    _beta = 0.5;
+    _death.peak = 1;
+    _death.distrType.assign("Uniform");
     _death.finalProb = 0;
 
-    _recov.peak = 0;
+    _recov.peak = 1;
     _recov.distrType.assign("Uniform");
     _recov.finalProb = 1;
-    _N0 = 100;
-    _predictionDays = 10;
+    _N0 = 20;
+    _predictionDays = 100;
     _predictionType = 0;
 }
 
@@ -64,11 +71,15 @@ void Window::set_predictionDays(int val) { _predictionDays = val; }
 void Window::set_predictionType(int val) { _predictionType = val; }
 
 
+
 // proviamo intanto a creare un grafico, poi ci pensermo dopo a riempire con dati veri
 void Window::simulate() {
+    vector<vector<double>> predictionMatrix;
+
+    PlagueModel model(_dOI, _death, _recov, _beta);
     switch(_predictionType) {
         case 0: {
-            // plague model deterministic prediction
+            predictionMatrix = model.DetPredict(_predictionDays,_N0);
             break;
         }
         case 1: {
@@ -76,54 +87,24 @@ void Window::simulate() {
             break;
         }
     }
-    // struttura compatibile con gli output delle previsioni; basta interfacciare
-    // i double e i long int
-    QStackedBarSeries *series = new QStackedBarSeries();
 
 
-    vector<double> recovVector(_predictionDays,10);
-    vector<double> deadVector(_predictionDays,5);
-    vector<double> infectVector(_predictionDays,3);
-    QBarSet *infectSet = new QBarSet("Infetti");
-    QBarSet *recovSet = new QBarSet("Guariti");
-    QBarSet *deadSet = new QBarSet("Deceduti");
+    Dialog secwindow(this,predictionMatrix,_predictionDays);
+    secwindow.resize(1200,900);
+    secwindow.setModal(true);
+    secwindow.exec();
 
-
-    // Constructing sets and series
-    for (int i=0; i<_predictionDays; i++) *infectSet << infectVector[i];
-    for (int i=0; i<_predictionDays; i++) *recovSet << recovVector[i];
-    for (int i=0; i<_predictionDays; i++) *deadSet << deadVector[i];
-
-    series -> append(deadSet);
-    series -> append(recovSet);
-    series -> append(infectSet);
-
-    // creating the chart, cosmetics and final plotting in new window
-    QChart* chart = new QChart();
-    chart -> addSeries(series);
-    chart -> setTitle("Grafico di prova");
-    chart->setAnimationOptions(QChart::SeriesAnimations);
-
-    QStringList categories;
-    for (int i=0; i<_predictionDays; i++) categories << QString::number(i);
-
-    QBarCategoryAxis *axisX = new QBarCategoryAxis();
-    axisX->append(categories);
-    chart->addAxis(axisX, Qt::AlignBottom);
-    series->attachAxis(axisX);
-    QValueAxis *axisY = new QValueAxis();
-    chart->addAxis(axisY, Qt::AlignLeft);
-    series->attachAxis(axisY);
-
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    QMainWindow* outwindow = new QMainWindow;
-    outwindow->setCentralWidget(chartView);
-    outwindow->resize(900, 600);
-    outwindow->show();
+    for (int k=0; k<_predictionDays; k++) std::cout << predictionMatrix[1][k] << "\t";
+    std::cout << std::flush;
+    std::cout << _dOI << std::endl;
+    std::cout << _beta << std::endl;
+    std::cout << _death.peak << std::endl;
+    std::cout << _death.distrType << std::endl;
+    std::cout << _death.finalProb << std::endl;
+    std::cout << _recov.peak << std::endl;
+    std::cout << _recov.distrType << std::endl;
+    std::cout << _recov.finalProb << std::endl;
+    std::cout << _N0 << std::endl;
+    std::cout << _predictionDays << std::endl;
+    std::cout << _predictionType << std::endl << std::endl << std::flush;
 }
-/*
-void Window::simulate() {
-    QWidget *wdg = new QWidget;
-    wdg->show();
-}*/

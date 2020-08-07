@@ -5,5 +5,5 @@ QSliderFromZero::QSliderFromZero(QWidget *parent):
     QSlider(parent) {}
 
 void QSliderFromZero::setMaximum(int max) {
-    this->setRange(0,max);
+    this->setRange(1,max-1);
 }

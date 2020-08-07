@@ -13,6 +13,7 @@ public:
 
 public slots:
     void setScaledValue0001(int);
+    void setValueMinus1(int);
 
 };
 

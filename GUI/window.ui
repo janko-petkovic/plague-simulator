@@ -161,6 +161,9 @@
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
+            <property name="currentText">
+             <string>Gaussian</string>
+            </property>
             <item>
              <property name="text">
               <string>Gaussian</string>
@@ -200,7 +203,7 @@
           <item>
            <widget class="QLabel" name="lab_min_recovPeak">
             <property name="text">
-             <string>0</string>
+             <string>1</string>
             </property>
            </widget>
           </item>
@@ -222,14 +225,17 @@
           </item>
           <item>
            <widget class="QSliderFromZero" name="slid_recovPeak">
+            <property name="minimum">
+             <number>1</number>
+            </property>
             <property name="maximum">
              <number>2</number>
             </property>
             <property name="value">
-             <number>0</number>
+             <number>1</number>
             </property>
             <property name="sliderPosition">
-             <number>0</number>
+             <number>1</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -256,7 +262,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLabel" name="lab_max_recovPeak">
+           <widget class="ScaledValueLabel" name="lab_max_recovPeak">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -270,7 +276,7 @@
              </size>
             </property>
             <property name="text">
-             <string>2</string>
+             <string>1</string>
             </property>
             <property name="scaledContents">
              <bool>false</bool>
@@ -361,6 +367,9 @@
              </size>
             </property>
             <property name="maximum">
+             <number>1000</number>
+            </property>
+            <property name="value">
              <number>1000</number>
             </property>
             <property name="orientation">
@@ -510,7 +519,7 @@
           <item>
            <widget class="QLabel" name="la_min_deathPeak">
             <property name="text">
-             <string>0</string>
+             <string>1</string>
             </property>
            </widget>
           </item>
@@ -566,7 +575,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLabel" name="lab_max_deathPeak">
+           <widget class="ScaledValueLabel" name="lab_max_deathPeak">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -574,7 +583,7 @@
              </size>
             </property>
             <property name="text">
-             <string>2</string>
+             <string>1</string>
             </property>
            </widget>
           </item>
@@ -673,6 +682,9 @@
           <property name="maximum">
            <number>9999</number>
           </property>
+          <property name="value">
+           <number>100</number>
+          </property>
          </widget>
         </item>
         <item row="15" column="0">
@@ -692,6 +704,9 @@
           </property>
           <property name="maximum">
            <number>9999</number>
+          </property>
+          <property name="value">
+           <number>10</number>
           </property>
          </widget>
         </item>
@@ -736,6 +751,9 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="value">
+           <double>0.500000000000000</double>
           </property>
          </widget>
         </item>
@@ -804,27 +822,12 @@
    <header>scaledvaluelabel.h</header>
    <slots>
     <slot>setScaledValue0001(int)</slot>
+    <slot>setValueMinus1(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
  <resources/>
  <connections>
-  <connection>
-   <sender>in_dOI</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lab_max_recovPeak</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>343</x>
-     <y>174</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>435</x>
-     <y>338</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>in_dOI</sender>
    <signal>valueChanged(int)</signal>
@@ -836,8 +839,8 @@
      <y>183</y>
     </hint>
     <hint type="destinationlabel">
-     <x>329</x>
-     <y>332</y>
+     <x>405</x>
+     <y>352</y>
     </hint>
    </hints>
   </connection>
@@ -848,12 +851,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>392</x>
-     <y>335</y>
+     <x>405</x>
+     <y>352</y>
     </hint>
     <hint type="destinationlabel">
-     <x>507</x>
-     <y>333</y>
+     <x>543</x>
+     <y>352</y>
     </hint>
    </hints>
   </connection>
@@ -864,28 +867,12 @@
    <slot>setScaledValue0001(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>397</x>
-     <y>363</y>
+     <x>405</x>
+     <y>386</y>
     </hint>
     <hint type="destinationlabel">
-     <x>520</x>
-     <y>361</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>in_dOI</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lab_max_deathPeak</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>321</x>
-     <y>176</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>444</x>
-     <y>473</y>
+     <x>560</x>
+     <y>386</y>
     </hint>
    </hints>
   </connection>
@@ -896,12 +883,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>388</x>
-     <y>475</y>
+     <x>405</x>
+     <y>516</y>
     </hint>
     <hint type="destinationlabel">
-     <x>512</x>
-     <y>474</y>
+     <x>560</x>
+     <y>516</y>
     </hint>
    </hints>
   </connection>
@@ -960,8 +947,8 @@
    <slot>set_recovPeak(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>379</x>
-     <y>332</y>
+     <x>405</x>
+     <y>352</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -976,8 +963,8 @@
    <slot>set_recovFinalProb(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>387</x>
-     <y>366</y>
+     <x>405</x>
+     <y>386</y>
     </hint>
     <hint type="destinationlabel">
      <x>481</x>
@@ -992,8 +979,8 @@
    <slot>set_deathDistr(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>350</x>
-     <y>444</y>
+     <x>381</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
      <x>250</x>
@@ -1008,8 +995,8 @@
    <slot>set_deathPeak(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>476</y>
+     <x>405</x>
+     <y>516</y>
     </hint>
     <hint type="destinationlabel">
      <x>414</x>
@@ -1024,8 +1011,8 @@
    <slot>set_N0(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
-     <y>613</y>
+     <x>348</x>
+     <y>648</y>
     </hint>
     <hint type="destinationlabel">
      <x>306</x>
@@ -1040,8 +1027,8 @@
    <slot>set_predictionDays(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>332</x>
-     <y>642</y>
+     <x>348</x>
+     <y>686</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -1056,8 +1043,8 @@
    <slot>set_predictionType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>349</x>
-     <y>689</y>
+     <x>418</x>
+     <y>723</y>
     </hint>
     <hint type="destinationlabel">
      <x>437</x>
@@ -1078,6 +1065,54 @@
     <hint type="destinationlabel">
      <x>383</x>
      <y>764</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_dOI</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>slid_deathPeak</receiver>
+   <slot>setMaximum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>367</x>
+     <y>512</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_dOI</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lab_max_recovPeak</receiver>
+   <slot>setValueMinus1(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>312</x>
+     <y>170</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>440</x>
+     <y>343</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>in_dOI</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lab_max_deathPeak</receiver>
+   <slot>setValueMinus1(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>173</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>455</x>
+     <y>504</y>
     </hint>
    </hints>
   </connection>

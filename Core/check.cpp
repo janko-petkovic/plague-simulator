@@ -10,8 +10,7 @@ using namespace arma;
 int main() {
 	
 		
-	arma::dcolvec a{1,2,3,4};
-	arma::mat mat(4,4,fill::eye);
+	cout << MinDist(1,2);
 	
 		
      return 0;

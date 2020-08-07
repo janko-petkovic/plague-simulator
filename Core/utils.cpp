@@ -12,14 +12,28 @@
 #include <vector>
 #include <string>
 #include <armadillo>
+#include <algorithm>
 
+
+// input peakDays check: they cant be on day 0 or on the last day by
+// definition
+bool PeakCheck(int peak, int dOI) {
+	if ((peak==0)||(peak==dOI)) return 1;
+	else return 0;
+}
 
 
 // Auxiliary function to find the closest boundary between end and beginning of illnes and
-// peak day
+// peak day.
+// NB: the function passes the bigger between 1 and the final mindist
+// between end/beginning and peak because we assume that the minimum
+// 3 sigma has to be at least one day long. Btw we use the std::min because
+// its much cleaner for debugging althoug including a whole library
+// just to use one function seems a litte overkill
 int MinDist(int dOI, int peakDay) {
-	if (peakDay < (dOI - peakDay)) return peakDay;
-	else return (dOI - peakDay);
+	
+	return std::min(peakDay, dOI-peakDay); 
+	
 }
 
 // Auxiliary function that finds the integral between -inf and x of the gaussian
@@ -70,7 +84,7 @@ std::vector<double> CumDistrFunc(I dOI, I peakDay, F scale, std::string type) {
     // switch depending on what type the distribution is
 	switch(Map[type]) {
                 case 1: {
-                        double sigma = static_cast<double>(MinDist(dOI, peakDay))/3;
+                        double sigma = static_cast<double>(MinDist(dOI, peakDay))/5;
                         for (int i=0; i<dOI; i++)
                             PAYLOAD[i] = scale*CumGauss((i-peakDay+1)/sqrt(2)/sigma);
                         break;

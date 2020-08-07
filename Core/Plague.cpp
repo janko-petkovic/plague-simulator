@@ -1,6 +1,8 @@
 #include "Plague.h"
 #include "utils.cpp"
 
+#include <cassert>
+
 
 using std::vector;
 
@@ -8,6 +10,12 @@ using std::vector;
 // constructor: crea le due distribuzioni di guarigione e decesso
 PlagueModel::PlagueModel(int dOI, statusChange death, statusChange recov,
 						double beta) : _dOI(dOI), _beta(beta) {
+	// input checks: may be unnecessary but in case we are not using a GUI
+	assert(dOI>=2);
+	assert(!PeakCheck(death.peak,dOI));
+	assert(!PeakCheck(death.peak,dOI));
+	
+	// distribution computation
 	_deathCumDistr = CumDistrFunc(dOI, death.peak, death.finalProb,
 									death.distrType);
 	_recovCumDistr = CumDistrFunc(dOI, recov.peak, recov.finalProb,

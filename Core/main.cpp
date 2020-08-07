@@ -7,22 +7,23 @@ using namespace std;
 int main() {
 
 		statusChange recovery;
-		recovery.peak = 15;
-		recovery.finalProb = 1;
+		recovery.peak =20;
+		recovery.finalProb = 0.95;
 		recovery.distrType = "Gaussian";
 		
 		statusChange death;
-		death.peak = 3;
-		death.finalProb = 0;
+		death.peak = 4;
+		death.finalProb = 0.05;
 		death.distrType = "Gaussian";
 		
 		
-		PlagueModel myPlague(30, death, recovery, 0.3);
+		PlagueModel myPlague(130, death, recovery, 0.1);
 		
+		int days = 200;
 		
-		vector<vector<double>> pandemy = myPlague.DetPredict(150,100);
+		vector<vector<double>> pandemy = myPlague.DetPredict(days,20);
 		cout << endl;
-		for (int i=0; i<150; i++) 
+		for (int i=0; i<days; i++) 
 		//~ printf("%.2f ",myPlague.RecovCumDistr()[i]);
 		printf("%.2f \t %.2f \t %.2f \t %.2f \n",
 		pandemy[0][i],pandemy[1][i],pandemy[2][i],pandemy[3][i]);

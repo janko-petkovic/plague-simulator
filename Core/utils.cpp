@@ -15,6 +15,7 @@
 #include <algorithm>
 
 
+
 // input peakDays check: they cant be on day 0 or on the last day by
 // definition
 bool PeakCheck(int peak, int dOI) {

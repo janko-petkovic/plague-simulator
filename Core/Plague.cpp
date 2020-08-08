@@ -2,9 +2,21 @@
 #include "utils.cpp"
 
 #include <cassert>
+#include <iostream>
 
 
 using std::vector;
+using std::clog;
+using std::endl;
+
+
+// struct print function
+void printStatChangeParams(statusChange status) {
+	clog << " parameters: " << endl;
+	clog << " Peak: " << status.peak << endl;
+	clog << " Final prob: " << status.finalProb << endl;
+	clog << " Distribution: " << status.distrType << endl;	
+}
 
 
 // constructor: crea le due distribuzioni di guarigione e decesso
@@ -14,12 +26,21 @@ PlagueModel::PlagueModel(int dOI, statusChange death, statusChange recov,
 	assert(dOI>=2);
 	assert(!PeakCheck(death.peak,dOI));
 	assert(!PeakCheck(death.peak,dOI));
+
 	
 	// distribution computation
 	_deathCumDistr = CumDistrFunc(dOI, death.peak, death.finalProb,
 									death.distrType);
 	_recovCumDistr = CumDistrFunc(dOI, recov.peak, recov.finalProb,
 									recov.distrType);
+									
+	//~ // logging where we are: very useful for debubbing purpouses
+	clog << "Plague model creation: successfull.\n\n";
+	clog << "Days of illness: " << _dOI << endl;
+	clog << "Death status change";
+	printStatChangeParams(death);
+	clog << "Recovery status change";
+	printStatChangeParams(recov);									
 }		
 
 // getter per le distribuzioni (usate solo in debugging per ora)
@@ -30,6 +51,12 @@ vector<double> PlagueModel::DeathCumDistr() const { return _deathCumDistr; }
 
 // previsione deterministica
 vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
+	
+	clog << "\nRUN PREDICTION\nType: deterministic\nParameters: \n";
+	clog << " Initial infected N0: " << N0 << endl;
+	clog << " Days of prediction: " << endTime << endl << endl;
+	clog << "Begin computation...\n";
+	
 	//vettore della popolazione infetta al tempo t
 	arma::dcolvec Nvec(_dOI+1);
 	Nvec(0) = N0;
@@ -84,6 +111,12 @@ vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
 	PAYLOAD[1] = infected;
 	PAYLOAD[2] = dead;
 	PAYLOAD[3] = recovered;
+	
+	clog << "Payload check: 2nd day" << endl;
+	clog  << PAYLOAD[0][2] << " " << PAYLOAD[1][2] << " ";
+	clog  << PAYLOAD[2][2] << " " << PAYLOAD[3][2] << endl;
+
+	clog << "Successful. Returning the payload\n\n";
 	
 	return PAYLOAD;
 }

@@ -30,6 +30,7 @@ public:
 	vector<double> RecovCumDistr() const;
 	vector<double> DeathCumDistr() const;
 
+	vector<vector<double>> DetPredict(int,vector<double>) const;
 	vector<vector<double>> DetPredict(int,int) const;
 	vector<vector<long int>> StocPredict(int,int) const;
 };

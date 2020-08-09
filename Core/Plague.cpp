@@ -35,7 +35,7 @@ PlagueModel::PlagueModel(int dOI, statusChange death, statusChange recov,
 									recov.distrType);
 									
 	//~ // logging where we are: very useful for debubbing purpouses
-	clog << "Plague model creation: successfull.\n\n";
+	clog << "Plague model creation: successfull.\n";
 	clog << "Days of illness: " << _dOI << endl;
 	clog << "Death status change";
 	printStatChangeParams(death);
@@ -48,19 +48,18 @@ vector<double> PlagueModel::RecovCumDistr() const { return _recovCumDistr; }
 vector<double> PlagueModel::DeathCumDistr() const { return _deathCumDistr; }
 
 
-
 // previsione deterministica
-vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
+vector<vector<double>> PlagueModel::DetPredict(int endTime, vector<double> Nvector) const {
 	
-	clog << "\nRUN PREDICTION\nType: deterministic\nParameters: \n";
-	clog << " Initial infected N0: " << N0 << endl;
-	clog << " Days of prediction: " << endTime << endl << endl;
+	int temp = Nvector.size();
+	clog << "\nRUN PREDICTION\nType: deterministic\n";
+	clog << " Checking N0 vector size...";
+	assert(temp=(_dOI+1));
+	clog << " done.\nDays of prediction: " << endTime << endl << endl;
 	clog << "Begin computation...\n";
 	
 	//vettore della popolazione infetta al tempo t
-	arma::dcolvec Nvec(_dOI+1);
-	Nvec(0) = N0;
-	Nvec(1) = double(N0)/_beta;
+	arma::dcolvec Nvec(Nvector);
 	
 	//matrici di propagazione morti e guariti
 	arma::mat deadMat(BuildDistribMatCheat(_deathCumDistr));
@@ -81,10 +80,10 @@ vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
 	
 	
 	//CALCOLO DELL'ANDAMENTO È QUI QUESTA COSA E IL CORE
-	cumInfected[0] = (double)N0;
+	cumInfected[0] = Nvec(0);
 	dead[0] = 0.;
 	recovered[0] = 0.;
-	infected[0] = (double)N0;
+	infected[0] = Nvec(0);
 	
 	arma::dcolvec deadIncr(_dOI+1);
 	arma::dcolvec recovIncr(_dOI+1);
@@ -117,6 +116,25 @@ vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
 	clog  << PAYLOAD[2][2] << " " << PAYLOAD[3][2] << endl;
 
 	clog << "Successful. Returning the payload\n\n";
+	
+	return PAYLOAD;
+}
+
+
+
+// previsione deterministica
+vector<vector<double>> PlagueModel::DetPredict(int endTime, int N0) const {
+	
+	clog << "\nBuilding N0 vector<double>...";
+	
+	//vettore della popolazione infetta al tempo t
+	vector<double> Nvector(_dOI+1,0);
+	Nvector[0] = N0;
+	Nvector[1] = double(N0)/_beta;
+	
+	clog << "successfull.\n";
+	
+	vector<vector<double>> PAYLOAD = DetPredict(endTime, Nvector);	
 	
 	return PAYLOAD;
 }

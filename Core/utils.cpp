@@ -1,12 +1,3 @@
-/* Includes the following auxiliary methods:
- *
- * int MinDist(int, int)
- * double CumGauss(F)
- * dmat CastRowMat(vector<double>)
- * dmat BuildDistrMatCheat(vector<double>)
- * vector<double> CumDistrFunc(I, I, F, string)
- */
-
 #include <cmath>
 #include <unordered_map>
 #include <vector>
@@ -14,81 +5,94 @@
 #include <armadillo>
 #include <algorithm>
 
+using std::vector;
+using arma::dmat;
 
 
-// INPUT CHECK
-// input peakDays check: they cant be on day 0 or _dOI by definition
-bool PeakCheck(int& peak, int& dOI) {
+// input peakDays check: they cant be on day 0 or _dOI by definition (debugging)
+bool PeakCheck(const int peak, const int dOI) {
 	if ((peak==0)||(peak==dOI)) return 1;
 	else return 0;
 }
 
+// Finds the closest boundary between end and beginning of illnes and
+// peak day 
+int MinDist(const int dOI, const int peakDay) { return std::min(peakDay, dOI-peakDay); }
 
-// Auxiliary function to find the closest boundary between end and beginning of illnes and
-// peak day. 
-
-int MinDist(int& dOI, int& peakDay) { return std::min(peakDay, dOI-peakDay); }
-
-// Auxiliary function that finds the integral between -inf and x of the gaussian
-template<class F>
-double CumGauss(F x) {
+// Finds the gaussian integral between -inf and x
+double CumGauss(const double& x) {
     double PAYLOAD;
     PAYLOAD = 0.5*(erf(10) + erf(x));
     return PAYLOAD;
 }
 
 
-// Auxiliary function: casts vectors into square matrixes for further use
-// Btw it converts vectors tu arma::mats
-arma::dmat CastRowMat(std::vector<double> &vec) {
+// Cretes a square matrix of zeros setting the first row equal to the
+// vector<double> given as argument.
+// NB: it converts vectors tu arma::mats
+dmat CastVecMat(const vector<double>& vec) {
+	// we need to make vec a row vector first
 	arma::drowvec temp(vec);
-	arma::dmat PAYLOAD(temp);
-	PAYLOAD.resize(temp.n_elem, temp.n_elem);
+	
+	// building the payload
+	int size = temp.n_elem;
+	dmat PAYLOAD(temp);
+	PAYLOAD.resize(size, size);
+	
+	// initializing setting to zero the zero elements
+	PAYLOAD(1,0,arma::size(size-1,size)) = arma::zeros(size-1,size);
 	return PAYLOAD;
 }
 
 
-// Very chaty stuff to calculate the discrete prob distribution of the 
-// status changes. Lets leave it like that
-// NB there is a very sneaky cast from dmat to dmat care!!
-arma::dmat BuildDistribMatCheat(std::vector<double> vec) {
-
-	for (int i= vec.size()-1; i != 0; i--) vec[i] -= vec[i-1];
+// Very specific function, build the propagation matrix of a status change
+// given a discrete cumulative distribution. 
+dmat BuildDistribMat(vector<double> vec) {
 	
+	// calculate the distribution from a cumulative
+	for (int i= vec.size()-1; i!=0; i--) vec[i] -= vec[i-1];
+	
+	// insert a zero at the beginning (as the model requires it)
 	vec.insert(vec.begin(),0);
-	arma::dmat temp(CastRowMat(vec));
-	arma::dmat PAYLOAD = arma::conv_to<arma::dmat>::from(temp);
+	
+	// now add the zeroes underneath to make it a matrix
+	dmat PAYLOAD(CastVecMat(vec));
 	
 	return PAYLOAD;
 }
 
 	
 
-// Computes the discrete cumulative distribution function of a given plague parameter (death prob, healed prob,..)
-template <class I, class F>
-std::vector<double> CumDistrFunc(I dOI, I peakDay, F scale, std::string type) {
+// Computes the discrete cumulative probability function of a status change given 
+// its parameters
+vector<double> CumDistrFunc(const int dOI, const int peakDay, const double scale,const std::string type) {
 
+	// Dictionary {1 = Gaussian, 2 = Uniform}
 	std::unordered_map<std::string, int> Map;
 		Map["Gaussian"] = 1;
 		Map["Uniform"] = 2;
 	
-	std::vector<double> PAYLOAD(dOI);
+	vector<double> PAYLOAD(dOI);
 	
     // switch depending on what type the distribution is
 	switch(Map[type]) {
                 case 1: {
+						// we assume that the distance between end/beginning of illness and
+						// the peak day of a status change is 5 sigma
                         double sigma = static_cast<double>(MinDist(dOI, peakDay))/5;
+                        // filling the gaussian cumulative
                         for (int i=0; i<dOI; i++)
                             PAYLOAD[i] = scale*CumGauss((i-peakDay+1)/sqrt(2)/sigma);
                         break;
                 }
                 case 2: {
+						// slope
                         double distrValue = 1./static_cast<double>(dOI)*scale;
+                        // filling the uniform cumulative
 						for (int i=0; i<dOI; i++)
 							PAYLOAD[i] = distrValue*static_cast<double>(i+1);
                         break;
                 }
-			
 	};	
 	
 	return PAYLOAD;

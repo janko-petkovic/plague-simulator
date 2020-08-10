@@ -8,7 +8,6 @@
 using std::vector;
 
 
-
 // remember: Gaussian = 1, Uniform = 2
 struct statusChange {
 	int peak;
@@ -19,20 +18,34 @@ struct statusChange {
 
 class PlagueModel {
 private:
-	int _dOI;
-	double _beta;
-	vector<double> _deathCumDistr;
-	vector<double> _recovCumDistr;
+	int _dOI;						// total days of possible illness
+	double _beta;					// daily reproduction rate
+	vector<double> _deathCumFunc;   // death probability cumulative func
+	vector<double> _recovCumFunc;	// recovery probability cumulative func
 	
 public:
-	PlagueModel(int, statusChange, statusChange, double);
+	// Constructors
+	PlagueModel();
+	PlagueModel(const int, const statusChange, const statusChange, const double);
 	
-	vector<double> RecovCumDistr() const;
-	vector<double> DeathCumDistr() const;
+	// Getters
+	int DOI() const;
+	double Beta() const;
+	vector<double> RecovCumFunc() const;
+	vector<double> DeathCumFunc() const;
+	
+	// Setters
+	void SetDOI(const int);
+	void SetBeta(const double);
+	void SetRecovCumFunc(const vector<double>);
+	void SetDeathCumFunc(const vector<double>);
 
-	vector<vector<double>> DetPredict(int,vector<double>) const;
-	vector<vector<double>> DetPredict(int,int) const;
-	vector<vector<long int>> StocPredict(int,int) const;
+	// Predictions: deterministic model
+	vector<vector<double>> DetPredict(const int,const vector<double>) const;
+	vector<vector<double>> DetPredict(const int,const int) const;
+	// Predictions: stochastic model
+	vector<vector<long int>> StocPredict(const int,const vector<long int>) const;
+	vector<vector<long int>> StocPredict(const int,const int) const;
 };
 
 #endif	

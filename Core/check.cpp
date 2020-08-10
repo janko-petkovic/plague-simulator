@@ -10,8 +10,10 @@ using namespace arma;
 int main() {
 	
 		
-	cout << MinDist(1,2);
+	vector<double> vec{1,2,3,4};
+	dmat mat = BuildDistribMatCheat(vec);
 	
+	cout << mat;
 		
      return 0;
 }

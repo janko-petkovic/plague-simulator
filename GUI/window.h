@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include "../Core/Plague.h"
+#include "chartwindow.h"
 #include <QMainWindow>
 #include <QVariant>
 
@@ -39,6 +40,8 @@ public slots:
 
 private:
     Ui::Window *ui;
+    ChartWindow* _chartW;
+
     statusChange _recov;
     statusChange _death;
     double _beta;

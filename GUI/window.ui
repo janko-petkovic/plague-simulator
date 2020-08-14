@@ -105,7 +105,10 @@
            <number>2</number>
           </property>
           <property name="maximum">
-           <number>9999</number>
+           <number>100</number>
+          </property>
+          <property name="value">
+           <number>30</number>
           </property>
          </widget>
         </item>
@@ -229,13 +232,13 @@
              <number>1</number>
             </property>
             <property name="maximum">
-             <number>2</number>
+             <number>30</number>
             </property>
             <property name="value">
-             <number>1</number>
+             <number>15</number>
             </property>
             <property name="sliderPosition">
-             <number>1</number>
+             <number>15</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -276,7 +279,7 @@
              </size>
             </property>
             <property name="text">
-             <string>1</string>
+             <string>29</string>
             </property>
             <property name="scaledContents">
              <bool>false</bool>
@@ -313,7 +316,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>0</string>
+              <string>15</string>
              </property>
             </widget>
            </widget>
@@ -370,7 +373,7 @@
              <number>1000</number>
             </property>
             <property name="value">
-             <number>1000</number>
+             <number>900</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -436,7 +439,7 @@
               </rect>
              </property>
              <property name="text">
-              <string>0</string>
+              <string>0,9</string>
              </property>
             </widget>
            </widget>
@@ -541,14 +544,17 @@
           </item>
           <item>
            <widget class="QSliderFromZero" name="slid_deathPeak">
+            <property name="minimum">
+             <number>1</number>
+            </property>
             <property name="maximum">
-             <number>2</number>
+             <number>30</number>
             </property>
             <property name="value">
-             <number>0</number>
+             <number>7</number>
             </property>
             <property name="sliderPosition">
-             <number>0</number>
+             <number>7</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -583,7 +589,7 @@
              </size>
             </property>
             <property name="text">
-             <string>1</string>
+             <string>29</string>
             </property>
            </widget>
           </item>
@@ -611,7 +617,7 @@
               </rect>
              </property>
              <property name="text">
-              <string>0</string>
+              <string>7</string>
              </property>
             </widget>
            </widget>
@@ -683,7 +689,7 @@
            <number>9999</number>
           </property>
           <property name="value">
-           <number>100</number>
+           <number>20</number>
           </property>
          </widget>
         </item>
@@ -702,11 +708,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="minimum">
+           <number>10</number>
+          </property>
           <property name="maximum">
-           <number>9999</number>
+           <number>300</number>
           </property>
           <property name="value">
-           <number>10</number>
+           <number>40</number>
           </property>
          </widget>
         </item>
@@ -740,7 +749,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="lab_beta">
           <property name="text">
-           <string>Tasso di contagio giornaliero Beta</string>
+           <string>Tasso di contagio giornaliero beta</string>
           </property>
          </widget>
         </item>
@@ -752,12 +761,28 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maximum">
+           <double>5.000000000000000</double>
+          </property>
           <property name="value">
-           <double>0.500000000000000</double>
+           <double>0.050000000000000</double>
           </property>
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <widget class="QPushButton" name="but_simulate">
@@ -801,7 +826,7 @@
      <x>0</x>
      <y>0</y>
      <width>567</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -835,12 +860,12 @@
    <slot>setMaximum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>329</x>
-     <y>183</y>
+     <x>311</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>405</x>
-     <y>352</y>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
@@ -852,11 +877,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>352</y>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
      <x>543</x>
-     <y>352</y>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
@@ -868,11 +893,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>386</y>
+     <y>373</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
-     <y>386</y>
+     <y>373</y>
     </hint>
    </hints>
   </connection>
@@ -884,11 +909,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>516</y>
+     <y>495</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
-     <y>516</y>
+     <y>495</y>
     </hint>
    </hints>
   </connection>
@@ -915,8 +940,8 @@
    <slot>set_beta(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>335</x>
-     <y>215</y>
+     <x>315</x>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
      <x>518</x>
@@ -931,8 +956,8 @@
    <slot>set_recovDistr(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>358</x>
-     <y>301</y>
+     <x>340</x>
+     <y>308</y>
     </hint>
     <hint type="destinationlabel">
      <x>356</x>
@@ -948,7 +973,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>352</y>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -964,7 +989,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>386</y>
+     <y>373</y>
     </hint>
     <hint type="destinationlabel">
      <x>481</x>
@@ -979,8 +1004,8 @@
    <slot>set_deathDistr(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>381</x>
-     <y>485</y>
+     <x>340</x>
+     <y>464</y>
     </hint>
     <hint type="destinationlabel">
      <x>250</x>
@@ -996,7 +1021,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>516</y>
+     <y>495</y>
     </hint>
     <hint type="destinationlabel">
      <x>414</x>
@@ -1011,8 +1036,8 @@
    <slot>set_N0(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>348</x>
-     <y>648</y>
+     <x>311</x>
+     <y>624</y>
     </hint>
     <hint type="destinationlabel">
      <x>306</x>
@@ -1027,8 +1052,8 @@
    <slot>set_predictionDays(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>348</x>
-     <y>686</y>
+     <x>304</x>
+     <y>661</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -1043,8 +1068,8 @@
    <slot>set_predictionType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>418</x>
-     <y>723</y>
+     <x>369</x>
+     <y>697</y>
     </hint>
     <hint type="destinationlabel">
      <x>437</x>
@@ -1075,12 +1100,12 @@
    <slot>setMaximum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>322</x>
-     <y>175</y>
+     <x>311</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
-     <x>367</x>
-     <y>512</y>
+     <x>405</x>
+     <y>495</y>
     </hint>
    </hints>
   </connection>
@@ -1091,12 +1116,12 @@
    <slot>setValueMinus1(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>312</x>
-     <y>170</y>
+     <x>311</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
-     <x>440</x>
-     <y>343</y>
+     <x>477</x>
+     <y>342</y>
     </hint>
    </hints>
   </connection>
@@ -1107,12 +1132,12 @@
    <slot>setValueMinus1(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>324</x>
-     <y>173</y>
+     <x>311</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
-     <x>455</x>
-     <y>504</y>
+     <x>477</x>
+     <y>498</y>
     </hint>
    </hints>
   </connection>

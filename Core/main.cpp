@@ -8,20 +8,20 @@ int main() {
 
 		statusChange recovery;
 		recovery.peak =14;
-		recovery.finalProb = 0.1;
-		recovery.distrType = "Uniform";
+		recovery.finalProb = 0.87;
+		recovery.distrType = "Gaussian";
 		
 		statusChange death;
 		death.peak = 12;
-		death.finalProb = 0;
+		death.finalProb = 0.13;
 		death.distrType = "Gaussian";
 		
 		
-		PlagueModel myPlague(2, death, recovery, 0.5);
+		PlagueModel myPlague(30, death, recovery, 0.04);
 		
-		int days = 100;
+		int days = 20;
 		
-		vector<double> infected{
+		vector<double> infectedTemp{
 			12953,
 			12924,
 			12694,
@@ -54,8 +54,18 @@ int main() {
 			13324,
 			13449};
 			
+		int dim = infectedTemp.size();
 		
-		vector<vector<double>> pandemy = myPlague.DetPredict(days,100);
+		vector<double> infected;
+
+		
+		for (int i=0; i<dim; i++) {
+			infected.push_back(infectedTemp[dim-i-1]);
+			cout << infected[i] << " ";
+		}
+			
+		
+		vector<vector<double>> pandemy = myPlague.DetPredict(days,infected);
 		cout << endl;
 		for (int i=0; i<days; i++) 
 		//~ printf("%.2f ",myPlague.RecovCumDistr()[i]);

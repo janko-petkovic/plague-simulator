@@ -43,9 +43,9 @@ public:
 	// Predictions: deterministic model
 	vector<vector<double>> DetPredict(const int,const vector<double>) const;
 	vector<vector<double>> DetPredict(const int,const int) const;
-	// Predictions: stochastic model
-	vector<vector<long int>> StocPredict(const int,const vector<long int>) const;
-	vector<vector<long int>> StocPredict(const int,const int) const;
+	//~ // Predictions: stochastic model
+	//~ vector<vector<long int>> StocPredict(const int,const vector<long int>) const;
+	//~ vector<vector<long int>> StocPredict(const int,const int) const;
 };
 
 #endif	

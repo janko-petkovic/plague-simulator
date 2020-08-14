@@ -9,9 +9,11 @@ using std::vector;
 using arma::dmat;
 
 
+
+
 // input peakDays check: they cant be on day 0 or _dOI by definition (debugging)
-bool PeakCheck(const int peak, const int dOI) {
-	if ((peak==0)||(peak==dOI)) return 1;
+bool PeakCheck(const int peak, const int dOI) { 
+	if ((peak<=0)||(peak>=dOI)) return 1;
 	else return 0;
 }
 
@@ -28,8 +30,8 @@ double CumGauss(const double& x) {
 
 
 // Cretes a square matrix of zeros setting the first row equal to the
-// vector<double> given as argument.
-// NB: it converts vectors tu arma::mats
+// vector<double> given as argument (broadcast).
+// NB: it converts std::vectors tu arma::dmat-s
 dmat CastVecMat(const vector<double>& vec) {
 	// we need to make vec a row vector first
 	arma::drowvec temp(vec);
@@ -46,7 +48,7 @@ dmat CastVecMat(const vector<double>& vec) {
 
 
 // Very specific function, build the propagation matrix of a status change
-// given a discrete cumulative distribution. 
+// given its discrete cumulative function. 
 dmat BuildDistribMat(vector<double> vec) {
 	
 	// calculate the distribution from a cumulative
@@ -65,7 +67,7 @@ dmat BuildDistribMat(vector<double> vec) {
 
 // Computes the discrete cumulative probability function of a status change given 
 // its parameters
-vector<double> CumDistrFunc(const int dOI, const int peakDay, const double scale,const std::string type) {
+vector<double> CumProbFunc(const int dOI, const int peakDay, const double finalProb,const std::string type) {
 
 	// Dictionary {1 = Gaussian, 2 = Uniform}
 	std::unordered_map<std::string, int> Map;
@@ -82,12 +84,12 @@ vector<double> CumDistrFunc(const int dOI, const int peakDay, const double scale
                         double sigma = static_cast<double>(MinDist(dOI, peakDay))/5;
                         // filling the gaussian cumulative
                         for (int i=0; i<dOI; i++)
-                            PAYLOAD[i] = scale*CumGauss((i-peakDay+1)/sqrt(2)/sigma);
+                            PAYLOAD[i] = finalProb*CumGauss((i-peakDay+1)/sqrt(2)/sigma);
                         break;
                 }
                 case 2: {
 						// slope
-                        double distrValue = 1./static_cast<double>(dOI)*scale;
+                        double distrValue = 1./static_cast<double>(dOI)*finalProb;
                         // filling the uniform cumulative
 						for (int i=0; i<dOI; i++)
 							PAYLOAD[i] = distrValue*static_cast<double>(i+1);

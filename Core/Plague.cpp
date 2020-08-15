@@ -6,16 +6,16 @@
 
 
 using std::vector;
-using std::cout;
+using std::clog;
 using std::endl;
 
 
 // Auxiliary struct print function (debugging purpouses)
 void printStatChangeParams(statusChange status) {
-	cout << " parameters: " << endl;
-	cout << " Peak: " << status.peak << endl;
-	cout << " Final prob: " << status.finalProb << endl;
-	cout << " Distribution: " << status.distrType << endl;	
+	clog << " parameters: " << endl;
+	clog << " Peak: " << status.peak << endl;
+	clog << " Final prob: " << status.finalProb << endl;
+	clog << " Distribution: " << status.distrType << endl;	
 }
 
 
@@ -23,8 +23,8 @@ void printStatChangeParams(statusChange status) {
 // class istance that is NOT ready to simulate (you have to set all the
 // parameters first by hand using setters
 PlagueModel::PlagueModel() {
-	cout << "Plague model creation: successfull.\n";
-	cout << "All parameters are uninitialized, please procede to set them";
+	clog << "Plague model creation: successfull.\n";
+	clog << "All parameters are uninitialized, please procede to set them";
 }
 
 // Advanced constructor: produces a class istance ready for simulation
@@ -44,11 +44,11 @@ PlagueModel::PlagueModel(const int dOI, const statusChange death, const statusCh
 									recov.distrType);
 									
 	// logging where we are
-	cout << "Plague model creation: successfull.\n";
-	cout << "Days of illness: " << _dOI << endl;
-	cout << "Death status change";
+	clog << "Plague model creation: successfull.\n";
+	clog << "Days of illness: " << _dOI << endl;
+	clog << "Death status change";
 	printStatChangeParams(death);
-	cout << "Recovery status change";
+	clog << "Recovery status change";
 	printStatChangeParams(recov);									
 }		
 
@@ -73,11 +73,11 @@ vector<vector<double>> PlagueModel::DetPredict(const int endTime,const vector<do
 	
 	// Running a dimension check on Nvector; more logging
 	int temp = Nvector.size();
-	cout << "\nRUN PREDICTION\nType: deterministic\n";
-	cout << " Checking N0 vector size...";
+	clog << "\nRUN PREDICTION\nType: deterministic\n";
+	clog << " Checking N0 vector size...";
 	assert(temp=(_dOI+1));
-	cout << " done.\nDays of prediction: " << endTime << endl << endl;
-	cout << "Begin computation...\n";
+	clog << " done.\nDays of prediction: " << endTime << endl << endl;
+	clog << "Begin computation...";
 	
 	// infected population vector 
 	arma::dcolvec Nvec(Nvector);
@@ -134,11 +134,11 @@ vector<vector<double>> PlagueModel::DetPredict(const int endTime,const vector<do
 	PAYLOAD[3] = recovered;
 	
 	// Last checks (were crucial in GUI debugging)
-	cout << "Payload check: 2nd day" << endl;
-	cout  << PAYLOAD[0][2] << " " << PAYLOAD[1][2] << " ";
-	cout  << PAYLOAD[2][2] << " " << PAYLOAD[3][2] << endl;
+	//~ clog << "Payload check: 2nd day" << endl;
+	//~ clog  << PAYLOAD[0][2] << " " << PAYLOAD[1][2] << " ";
+	//~ clog  << PAYLOAD[2][2] << " " << PAYLOAD[3][2] << endl;
 
-	cout << "Successful. Returning the payload\n\n";
+	clog << "Successful.\n\n" << std::flush;
 	
 	return PAYLOAD;
 }
@@ -146,7 +146,7 @@ vector<vector<double>> PlagueModel::DetPredict(const int endTime,const vector<do
 // Deterministic prediction overload starting from first day of infection
 vector<vector<double>> PlagueModel::DetPredict(const int endTime, const int N0) const {
 	
-	cout << "\nBuilding N0 vector<double>...";
+	clog << "\nBuilding N0 vector<double>...";
 	
 	// Build infected at time 0 vector
 	vector<double> Nvector(_dOI+1,0);
@@ -156,7 +156,7 @@ vector<vector<double>> PlagueModel::DetPredict(const int endTime, const int N0) 
 	// to allow the prediction to run as supposed
 	Nvector[1] = double(N0)/_beta;
 	
-	cout << "successfull.\n";
+	clog << "successfull.\n";
 	
 	// We use the other function overload
 	vector<vector<double>> PAYLOAD = DetPredict(endTime, Nvector);	

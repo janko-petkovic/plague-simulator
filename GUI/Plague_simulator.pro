@@ -20,8 +20,6 @@ SOURCES += \
     chartutils.cpp \
     chartwindow.cpp \
     main.cpp \
-    qsliderfromzero.cpp \
-    scaledvaluelabel.cpp \
     window.cpp
 
 HEADERS += \

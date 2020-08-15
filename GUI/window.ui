@@ -112,6 +112,29 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lab_beta">
+          <property name="text">
+           <string>Tasso di contagio giornaliero beta</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="in_beta">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum">
+           <double>5.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.050000000000000</double>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
          <spacer name="verticalSpacer">
           <property name="orientation">
@@ -670,6 +693,13 @@
           </property>
          </widget>
         </item>
+        <item row="13" column="1">
+         <widget class="QCheckBox" name="chek_clog">
+          <property name="text">
+           <string>Clog della simulazione</string>
+          </property>
+         </widget>
+        </item>
         <item row="14" column="0">
          <widget class="QLabel" name="lab_N0">
           <property name="text">
@@ -744,29 +774,6 @@
             <string>Stocastica</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="lab_beta">
-          <property name="text">
-           <string>Tasso di contagio giornaliero beta</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDoubleSpinBox" name="in_beta">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximum">
-           <double>5.000000000000000</double>
-          </property>
-          <property name="value">
-           <double>0.050000000000000</double>
-          </property>
          </widget>
         </item>
        </layout>
@@ -860,12 +867,12 @@
    <slot>setMaximum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>311</x>
+     <x>304</x>
      <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>405</x>
-     <y>339</y>
+     <y>335</y>
     </hint>
    </hints>
   </connection>
@@ -877,11 +884,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>339</y>
+     <y>335</y>
     </hint>
     <hint type="destinationlabel">
      <x>543</x>
-     <y>339</y>
+     <y>335</y>
     </hint>
    </hints>
   </connection>
@@ -893,11 +900,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>373</y>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
-     <y>373</y>
+     <y>369</y>
     </hint>
    </hints>
   </connection>
@@ -909,11 +916,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>495</y>
+     <y>486</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
-     <y>495</y>
+     <y>486</y>
     </hint>
    </hints>
   </connection>
@@ -940,7 +947,7 @@
    <slot>set_beta(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>315</x>
+     <x>307</x>
      <y>222</y>
     </hint>
     <hint type="destinationlabel">
@@ -957,7 +964,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>340</x>
-     <y>308</y>
+     <y>304</y>
     </hint>
     <hint type="destinationlabel">
      <x>356</x>
@@ -973,7 +980,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>339</y>
+     <y>335</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -989,7 +996,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>373</y>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
      <x>481</x>
@@ -1005,7 +1012,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>340</x>
-     <y>464</y>
+     <y>455</y>
     </hint>
     <hint type="destinationlabel">
      <x>250</x>
@@ -1021,7 +1028,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>405</x>
-     <y>495</y>
+     <y>486</y>
     </hint>
     <hint type="destinationlabel">
      <x>414</x>
@@ -1037,7 +1044,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>311</x>
-     <y>624</y>
+     <y>621</y>
     </hint>
     <hint type="destinationlabel">
      <x>306</x>
@@ -1053,7 +1060,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>304</x>
-     <y>661</y>
+     <y>658</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -1069,7 +1076,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>369</x>
-     <y>697</y>
+     <y>694</y>
     </hint>
     <hint type="destinationlabel">
      <x>437</x>
@@ -1100,12 +1107,12 @@
    <slot>setMaximum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>311</x>
+     <x>304</x>
      <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>405</x>
-     <y>495</y>
+     <y>486</y>
     </hint>
    </hints>
   </connection>
@@ -1116,12 +1123,12 @@
    <slot>setValueMinus1(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>311</x>
+     <x>304</x>
      <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>477</x>
-     <y>342</y>
+     <y>338</y>
     </hint>
    </hints>
   </connection>
@@ -1132,12 +1139,28 @@
    <slot>setValueMinus1(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>311</x>
+     <x>304</x>
      <y>185</y>
     </hint>
     <hint type="destinationlabel">
      <x>477</x>
-     <y>498</y>
+     <y>489</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chek_clog</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Window</receiver>
+   <slot>set_logging(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>384</x>
+     <y>581</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>384</x>
+     <y>558</y>
     </hint>
    </hints>
   </connection>
@@ -1154,5 +1177,6 @@
   <slot>set_N0(int)</slot>
   <slot>set_predictionDays(int)</slot>
   <slot>set_predictionType(int)</slot>
+  <slot>set_logging(bool)</slot>
  </slots>
 </ui>

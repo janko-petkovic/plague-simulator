@@ -33,6 +33,7 @@ public slots:
     void set_N0(int);
     void set_predictionDays(int);
     void set_predictionType(int);
+    void set_logging(bool);
 
     void simulate();
 
@@ -49,7 +50,7 @@ private:
     int _predictionType;
 
     // generate a log output
-    bool _clogging;
+    bool _logging;
 };
 
 #endif // WINDOW_H

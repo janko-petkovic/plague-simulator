@@ -8,6 +8,9 @@
 #include <cassert>
 #include <iostream>
 
+using std::cout;
+using std::endl;
+
 
 // Constructor: usual Qt stuff and model parameter initialization
 Window::Window(QWidget *parent)
@@ -30,7 +33,7 @@ Window::Window(QWidget *parent)
     _N0 = 20;
     _predictionDays = 200;
     _predictionType = 0;
-    _clogging = 0;
+    _logging = 0;
 }
 
 Window::~Window()
@@ -73,6 +76,7 @@ void Window::set_recovFinalProb(int val) {
 void Window::set_N0(int val) { _N0 = val; }
 void Window::set_predictionDays(int val) { _predictionDays = val; }
 void Window::set_predictionType(int val) { _predictionType = val; }
+void Window::set_logging(bool val) { _logging = val; }
 
 
 // Click simulate: create a plague model, run the prediction method,
@@ -112,6 +116,23 @@ void Window::simulate() {
             _chartW = new ChartWindow(this, predictionMatrix,lineData,_predictionDays);
             _chartW->resize(1600,1200);
             _chartW->show();
+
+            // log predicted data and some final interesting parameters
+            if (_logging==1) {
+                cout << "\nOUTPUTTING PREDICTED DATA\n";
+                cout << "Day \t Cum \t Inf \t Dead \t Rec \t Dead Frac \t Rec frac \n";
+                for (int i=0; i<_predictionDays; i++) {
+                    cout << i << "\t";
+                    cout << predictionMatrix[0][i] << "\t" << predictionMatrix[1][i] << "\t";
+                    cout << predictionMatrix[2][i] << "\t" << predictionMatrix[3][i] << "\t";
+                    cout << deathFrac[i] << "\t" << recovFrac[i] << endl;
+                }
+
+                cout << "\nSome final mean features:\n\n";
+                cout << "Case fatality rate: " << predictionMatrix[2][_predictionDays-1]/predictionMatrix[0][_predictionDays-1];
+                cout << "\nCase recovery rate: " << predictionMatrix[3][_predictionDays-1]/predictionMatrix[0][_predictionDays-1];
+                cout << endl << std::flush;
+            }
 
             break;
         }

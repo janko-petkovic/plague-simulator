@@ -13,8 +13,6 @@ namespace Ui { class Window; }
 QT_END_NAMESPACE
 
 
-
-
 class Window : public QMainWindow
 {
     Q_OBJECT
@@ -49,5 +47,9 @@ private:
     int _N0;
     int _predictionDays;
     int _predictionType;
+
+    // generate a log output
+    bool _clogging;
 };
+
 #endif // WINDOW_H

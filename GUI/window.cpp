@@ -4,20 +4,19 @@
 #include "../Core/Plague.h"
 #include "../Core/Plague.cpp"
 
-#include <string>
 #include <QtWidgets>
-#include <QtCharts>
 #include <cassert>
 #include <iostream>
 
 
+// Constructor: usual Qt stuff and model parameter initialization
 Window::Window(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Window)
 {
     ui->setupUi(this);
 
-
+    // Start-up model parameters
     _dOI = 30;
     _beta = 0.05;
 
@@ -31,6 +30,7 @@ Window::Window(QWidget *parent)
     _N0 = 20;
     _predictionDays = 200;
     _predictionType = 0;
+    _clogging = 0;
 }
 
 Window::~Window()
@@ -43,6 +43,7 @@ Window::~Window()
 // days of illness setters
 void Window::set_dOI(int val) { _dOI = val; }
 void Window::set_beta(double val) {_beta = val; }
+
 
 // death status change setters
 void Window::set_deathDistr(int val) {
@@ -59,6 +60,7 @@ void Window::set_recovDistr(int val) {
     std::cout << val << " " << _recov.distrType << endl;
 }
 
+
 void Window::set_recovPeak(int val) { _recov.peak = val; }
 void Window::set_recovFinalProb(int val) {
     double temp = 0.001*val;
@@ -66,68 +68,57 @@ void Window::set_recovFinalProb(int val) {
     _death.finalProb = 1-temp;
 }
 
+
 // prediction parameters setters
 void Window::set_N0(int val) { _N0 = val; }
 void Window::set_predictionDays(int val) { _predictionDays = val; }
 void Window::set_predictionType(int val) { _predictionType = val; }
 
 
-// click simulate: calling PlagueModel prediction methods and data plotting
+// Click simulate: create a plague model, run the prediction method,
+// create the outcome percentages data, draw the two charts
 void Window::simulate() {
-    vector<vector<double>> predictionMatrix;
 
-    // choosing the prediction: deterministic or stochastic
+    // Model istantiation
     PlagueModel model(_dOI, _death, _recov, _beta);
+
     switch(_predictionType) {
+
+        // Deterministic prediction
         case 0: {
+
+            // infected, dead and recovered data (model.DetPredict())
+            vector<vector<double>> predictionMatrix;
             predictionMatrix = model.DetPredict(_predictionDays,_N0);
+
+            // Outcome percentages data: instantiation...
+            vector<vector<double>> lineData;
+            vector<double> deathFrac(_predictionDays);
+            vector<double> recovFrac(_predictionDays);
+            deathFrac[0] = 0;
+            recovFrac[0] = 0;
+
+            // ...filling...
+            for (int i=1; i<_predictionDays; i++) {
+                deathFrac[i] = predictionMatrix[2][i]/(predictionMatrix[2][i]+predictionMatrix[3][i]);
+                recovFrac[i] = predictionMatrix[3][i]/(predictionMatrix[2][i]+predictionMatrix[3][i]);
+            }
+
+            // ...adding to the percentages matrix.
+            lineData.push_back(deathFrac);
+            lineData.push_back(recovFrac);
+
+            // creating the chartwindow and showing
+            _chartW = new ChartWindow(this, predictionMatrix,lineData,_predictionDays);
+            _chartW->resize(1600,1200);
+            _chartW->show();
+
             break;
         }
+
+        // Stochastic prediction: still to be figured out
         case 1: {
-            // plague model stochastic prediction
             break;
         }
     }
-
-    // constructing the death and recovery rates
-    vector<double> deathRate(_predictionDays);
-    deathRate[0] = 0;
-
-    vector<double> recovRate(_predictionDays);
-    recovRate[0] = 0;
-
-    //vector<double> removed(_predictionDays);
-    //std::transform(deathRate.begin(), deathRate.end(),recovRate.begin(),removed.begin(),std::plus<double>());
-
-    for (int i=1; i<_predictionDays; i++) {
-        deathRate[i] = predictionMatrix[2][i]/(predictionMatrix[2][i]+predictionMatrix[3][i]);//removed[i];
-        recovRate[i] = predictionMatrix[3][i]/(predictionMatrix[2][i]+predictionMatrix[3][i]);//removed[i];
-//        std::cout << recovIncr[i] << " " << deadIncr[i];
-//        std::cout << predictionMatrix[2][i] << " " << predictionMatrix[3][i] << std::endl << std::flush;
-    }
-
-
-    // creating the vector death and recovery rates
-    vector<vector<double>> lineData;
-    lineData.push_back(deathRate);
-    lineData.push_back(recovRate);
-
-
-    _chartW = new ChartWindow(this, predictionMatrix,lineData,_predictionDays);
-    _chartW->resize(16000,1200);
-    _chartW->show();
-
-//    for (int k=0; k<_predictionDays; k++) std::cout << predictionMatrix[1][k] << "\t";
-//    std::cout << std::flush;
-//    std::cout << _dOI << std::endl;40
-//    std::cout << _beta << std::endl;
-//    std::cout << _death.peak << std::endl;
-//    std::cout << _death.distrType << std::endl;
-//    std::cout << _death.finalProb << std::endl;
-//    std::cout << _recov.peak << std::endl;
-//    std::cout << _recov.distrType << std::endl;
-//    std::cout << _recov.finalProb << std::endl;
-//    std::cout << _N0 << std::endl;
-//    std::cout << _predictionDays << std::endl;
-//    std::cout << _predictionType << std::endl << std::endl << std::flush;
 }

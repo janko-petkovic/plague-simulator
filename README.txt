@@ -1,8 +1,8 @@
-
-#  Plague_simulator			 
-author: Janko Petkovic		 
-email: janko.petkovic@studio.unibo.it 
-
+#############################################
+#   Plague_simulator			    #
+#   author: Janko Petkovic		    #
+#   email: janko.petkovic@studio.unibo.it   #
+#############################################
 
 
 Deterministic toy model for disease spreading simulation.

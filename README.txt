@@ -35,7 +35,7 @@ sudo apt-get install)
 
 
 #  DOWNLOAD AND INSTALL
-All the building files can be downloaded by the git repository:
+All the building files can be downloaded from the git repository:
 
 https://github.com/PizzaGitHub/Plague.git
 

@@ -38,7 +38,11 @@ Window::Window(QWidget *parent)
 
 Window::~Window()
 {
+	delete _chartW;
     delete ui;
+    
+    ui = nullptr;
+    _chartW = nullptr;
 }
 
 

@@ -696,7 +696,7 @@
         <item row="13" column="1">
          <widget class="QCheckBox" name="chek_clog">
           <property name="text">
-           <string>Clog della simulazione</string>
+           <string>Log della simulazione</string>
           </property>
          </widget>
         </item>
@@ -1151,7 +1151,7 @@
   <connection>
    <sender>chek_clog</sender>
    <signal>clicked(bool)</signal>
-   <receiver>Window</receiver>
+   <receiver>Window</receiver>Clog
    <slot>set_logging(bool)</slot>
    <hints>
     <hint type="sourcelabel">

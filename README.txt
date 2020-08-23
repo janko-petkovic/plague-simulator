@@ -5,7 +5,7 @@
 #############################################
 
 
-Deterministic toy model for disease spreading simulation.
+Deterministic toy model for disease spread simulation.
 Only valid as a first order approximation in the limit S -> infty; more 
 refinements as well as a stochastic prediction algorithm will be implemented
 in the future (hopefully).

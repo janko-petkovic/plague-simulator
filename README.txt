@@ -25,7 +25,7 @@ useful information for an installation on those. Sorry for that.
 The following libraires must be installed on the system (e.g. via 
 sudo apt-get install)
 
-- Qt libraries:	qt5-defaults, libqt5charts5-dev
+- Qt libraries:	qt5-default, libqt5charts5-dev
 
 - Armadillo environment (in this order):
 	LAPACK: liblapack-dev

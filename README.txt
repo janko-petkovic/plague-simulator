@@ -29,8 +29,8 @@ sudo apt-get install)
 
 - Armadillo environment (in this order):
 	LAPACK: liblapack-dev
-	LibOpenBLAS: libopenblas-dev
-	Armadillo: libarmadillo-dev, libarmadillo9, libarmadillo9-dbgsym
+	LibOpenBLAS: libblas-dev
+	Armadillo: libarmadillo-dev, libarmadillo9
 
 
 

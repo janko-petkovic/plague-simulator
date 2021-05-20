@@ -1,27 +1,16 @@
-#############################################
-#   Plague_simulator			    #
-#   author: Janko Petkovic		    #
-#   email: janko.petkovic@studio.unibo.it   #
-#############################################
-
-
-Deterministic toy model for disease spread simulation.
+Mean field model for disease spread simulation.
 Only valid as a first order approximation in the limit S -> infty; more 
 refinements as well as a stochastic prediction algorithm will be implemented
-in the future (hopefully).
-
-
-##########  BUILDING  ###########
+in the future.
 
 The program was coded on a Debian machine (Mint 19.3, Ubuntu 19) and the 
 building instructions are given for a Debian system.
 
-The author isn't very acquainted with other Linux distros and cannot give 
+The author isn't very acquainted with non-debian Linux distros and cannot give 
 useful information for an installation on those. Sorry for that.
 
 
-
-#  PREREQUISITES
+## Prerequisites
 The following libraires must be installed on the system (e.g. via 
 sudo apt-get install)
 
@@ -33,8 +22,7 @@ sudo apt-get install)
 	Armadillo: libarmadillo-dev, libarmadillo9
 
 
-
-#  DOWNLOAD AND INSTALL
+## Download and install
 All the building files can be downloaded from the git repository:
 
 https://github.com/PizzaGitHub/Plague.git
@@ -42,10 +30,10 @@ https://github.com/PizzaGitHub/Plague.git
 Once downloaded the files unzip, go into your installation folder and
 issue:
 
-$ mkdir build
-$ cd build
-$ qmake -o Makefile <path>/Plague-master/GUI/Plague_simulator.pro
-$ make -j8
+	$ mkdir build
+	$ cd build
+	$ qmake -o Makefile <path>/Plague-master/GUI/Plague_simulator.pro
+	$ make -j8
 
 
 Hope everything works, stay safe.

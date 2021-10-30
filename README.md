@@ -13,15 +13,11 @@ useful information for an installation on those. Sorry for that.
 
 
 ## Prerequisites
-The following libraires must be installed on the system (e.g. via 
-sudo apt-get install)
-
-- Qt libraries:	qt5-default, libqt5charts5-dev
-
-- Armadillo environment (in this order):
-	-LAPACK: liblapack-dev
-	- LibOpenBLAS: libblas-dev
-	-rmadillo: libarmadillo-dev, libarmadillo9
+For the correct program execution, Qt and Armadillo libraries have to be present
+on the system. An installation from the ground up can be achieved running 
+```
+sudo apt install qt5-default libqt5charts5-dev liblapack-dev libblas-dev libarmadillo-dev libarmadillo9
+```
 
 
 ## Download and install

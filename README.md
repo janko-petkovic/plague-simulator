@@ -1,4 +1,4 @@
-# Plague-simulator
+# plague-simulator
 
 Mean field model for disease spread simulation.
 Only valid as a first order approximation in the limit S -> infty; more 
@@ -27,7 +27,7 @@ sudo apt-get install)
 ## Download and install
 All the building files can be downloaded from the git repository:
 
-https://github.com/janko-petkovic/Plague-simulator.git
+https://github.com/janko-petkovic/plague-simulator.git
 
 Once downloaded the files unzip, go into your installation folder and
 issue:

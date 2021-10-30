@@ -19,9 +19,9 @@ sudo apt-get install)
 - Qt libraries:	qt5-default, libqt5charts5-dev
 
 - Armadillo environment (in this order):
-	LAPACK: liblapack-dev
-	LibOpenBLAS: libblas-dev
-	Armadillo: libarmadillo-dev, libarmadillo9
+	-LAPACK: liblapack-dev
+	- LibOpenBLAS: libblas-dev
+	-rmadillo: libarmadillo-dev, libarmadillo9
 
 
 ## Download and install

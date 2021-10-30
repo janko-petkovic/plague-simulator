@@ -27,7 +27,7 @@ sudo apt-get install)
 ## Download and install
 All the building files can be downloaded from the git repository:
 
-https://github.com/PizzaGitHub/Plague.git
+https://github.com/janko-petkovic/Plague-simulator.git
 
 Once downloaded the files unzip, go into your installation folder and
 issue:
